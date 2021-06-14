@@ -12,6 +12,37 @@ def dielectric(dielectric_model : str,
                mv_pct : float,
                clay_pct : float,
                sand_pct : float = None):
+    """
+    Computes the complex dielectric constant of a soil-water mixture.
+
+    Required Inputs:
+    ----------------
+
+    dielectric_model : float
+        Which dielectric mixing model to use, must be in ['hallikainen_1985', 'mironov_2009']
+
+    freq_GHz : float
+        Radar frequency [GHz]
+
+    mv_pct : float
+        Volumetric soil moisture content (0-100)[%]
+
+    clay_pct : float
+        Clay mass fraction (0-100)[%]
+
+    Optional Inputs (depends on model chosen):
+    ------------------------------------------
+
+    sand_pct : float
+        Sand mass fraction (0-100)[%]
+
+    Output:
+    -------
+
+    sigma0_dB
+        Normalized radar cross section [dB]
+    """
+
     if dielectric_model not in ['hallikainen_1985', 'mironov_2009']:
         raise ValueError("Model '" + str(dielectric_model) + "' must be in ['hallikainen_1985', 'mironov_2009']")
     if dielectric_model == 'hallikainen_1985':
