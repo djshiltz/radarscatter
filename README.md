@@ -4,6 +4,12 @@ Implements a variety of microwave radar scattering and soil dielectric models fo
 - to install, type ``pip install git+https://github.com/djshiltz/radarscatter``
 - to uninstall, type ``pip uninstall radarscatter``
 
+The two main commands in this package are:
+- ``radarscatter.dielectric()`` to implement a soil dielectric mixing model
+- ``radarscatter.backscatter()`` to compute the normalized radar cross section of bare soil
+
+The file ``validation.py`` includes several examples that re-produce plots from each model's original publication.
+
 ## Dielectric Mixing Models
 
 Computes the complex dielectric constant of a soil-water mixture
@@ -44,10 +50,43 @@ Inputs:
 - radar frequency [GHz]
 - radar polarization (hh or vv)
 - radar incidence angle [deg]
-- complex dielectric constant
+- soil complex dielectric constant
 - surface RMS height [cm]
 - surface correlation length [cm]
 - surface autocorrelation function shape parameter (1=exponential, 2=gaussian)
 - boolean ``use_transition_function`` flag
 
 ### ``'calibrated_iem'``
+Extension of the IEM where the physical correlation length is replaced by an empirical calibration.  These calibrations were given in
+- L-band: Baghdadi et al., 2015, "Semi-empirical Calibration of the Integral Equation Model for Co-polarized L-band Backscattering," *Remote Sensing*.
+- C-band: Baghdadi et al., 2006, "Calibration of the Integral Equation Model for SAR Data in C-band and HH and VV Polarizations," *International Journal of Remote Sensing*.
+- X-band: Baghdadi et al., 2011, "Comparison Between Backscattered TerraSAR Signals and Simulations from the Radar Backscattering Models IEM, Oh, and Dubois,"
+*IEEE Geoscience and Remote Sensing Letters*.
+
+Inputs:
+- radar frequency [GHz]
+- radar polarization (hh or vv)
+- radar incidence angle [deg]
+- complex dielectric constant
+- surface RMS height [cm]
+
+### ``'baghdadi_2016'``
+Baghdadi et al., 2016, "A New Empirical Model for Radar Scattering from Bare Soil Surfaces," *Remote Sensing*.
+
+Inputs:
+- radar frequency [GHz]
+- radar polarization (hh or vv)
+- radar incidence angle [deg]
+- volumetric moisture [%]
+- surface RMS height [cm]
+
+
+### ``'dubois_1995'``
+Dubois et al., 1995, "Measuring Soil Moisture with Imaging Radars," *IEEE Transactions on Geoscience and Remote Sensing*.
+
+Inputs:
+- radar frequency [GHz]
+- radar polarization (hh or vv)
+- radar incidence angle [deg]
+- real part of soil dielectric constant
+- surface RMS height [cm]
