@@ -29,8 +29,8 @@ setup(
     # These are the dependencies I had in place when building this package
     # Newer versions may work, but are not guaranteed
     install_requires=[
-        "numpy==1.20.2",
-        "matplotlib==3.4.1",
+        "numpy>=1.20.2",
+        "matplotlib>=3.4.1",
     ],
 
     # Here are the keywords of my library
