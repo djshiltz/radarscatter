@@ -1,6 +1,5 @@
 import numpy as np
 import radarscatter
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 plt.style.use('custom.mplstyle')
 
